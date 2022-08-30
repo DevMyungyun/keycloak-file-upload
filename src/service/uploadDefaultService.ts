@@ -34,10 +34,6 @@ class uploadDefaultService extends UploadAbstractClass {
         defaultInvalidName: 'invalid-upload-file',
         // multiples: this.multiples,
         filename: undefined,
-        // filter: function ({name, originalFilename, mimetype}) {
-        //     // keep only images
-        //     return mimetype && mimetype.includes("image");
-        // }
     };
 
     filter(): Function {
@@ -50,7 +46,7 @@ class uploadDefaultService extends UploadAbstractClass {
     options(): void {
         this.optionsObj.uploadDir = this.uploadDir;
         this.optionsObj.multiples = this.multiples;
-        this.optionsObj.filter = this.filter;
+        this.optionsObj.filter = this.filter();
     }
     
     public async uploadFile (req: Request): Promise<Object> {
@@ -59,11 +55,9 @@ class uploadDefaultService extends UploadAbstractClass {
         return new Promise((resolve, rejects) => {
             form.parse(req, (err, fields, files) => {
                 if (err) {
-                    console.log(`Error!! ${err}`);
                     rejects({ 'status': 'fail',
                             'descryption': err }); 
                 }
-                console.dir(`11 ${fields}, ${files}`);
                 resolve({ status: 'success',
                             fields,
                             files });
