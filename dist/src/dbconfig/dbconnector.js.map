@@ -1,1 +1,0 @@
-{"version":3,"file":"dbconnector.js","sourceRoot":"","sources":["../../../src/dbconfig/dbconnector.ts"],"names":[],"mappings":";;AAAA,2BAA0B;AAE1B,MAAM,IAAI,GAAG,IAAI,SAAI,CAAE;IACnB,GAAG,EAAE,EAAE;IACP,wEAAwE;IACxE,gBAAgB,EAAE,8DAA8D;IAChF,iBAAiB,EAAE,KAAK;IACxB,uBAAuB,EAAE,KAAK;CACjC,CAAC,CAAC;AAEH,kBAAe,IAAI,CAAC"}
