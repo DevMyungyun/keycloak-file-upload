@@ -11,12 +11,6 @@ import indexRouter from './routers/indexRouter';
 import uploadRouter from './routers/uploadRouter';
 
 import logger from './middleware/logger';
-// import path from 'path';
-
-
-const uploadfileDirectory: String = "C:\\tmp\\myc\\upload";
-// console.log(`${process.env}`);
-// console.log(`${process.env.SERVER_PORT}`);
 
 const memoryStore = new session.MemoryStore();
 const keycloak = new Keycloak({
@@ -25,9 +19,21 @@ const keycloak = new Keycloak({
 
 class Server {
     private app;
+    private port;
+    private fileUploadDirectoryPath;
+    private keycloakAdminUrl;
+    private keycloakLogoutUrl;
 
-    constructor() {
+    constructor(port: string, 
+                fileUploadDirectoryPath: string,
+                keycloakAdminUrl: string,
+                keycloakLogoutUrl: string) {
         this.app = express();
+        this.port = port;
+        this.fileUploadDirectoryPath = fileUploadDirectoryPath;
+        this.keycloakAdminUrl = keycloakAdminUrl;
+        this.keycloakLogoutUrl = keycloakLogoutUrl;
+
         this.sessionManage();
         this.middleware();
         this.config();
@@ -46,7 +52,7 @@ class Server {
     }
 
     private fileDirectoryCheck() {
-        FileDirectoryCheck(uploadfileDirectory);
+        FileDirectoryCheck(this.fileUploadDirectoryPath);
     }
 
     private dbConnect() {
@@ -64,8 +70,8 @@ class Server {
     private middleware() {
         this.app.use(logger);
         this.app.use(keycloak.middleware({
-            logout: '/logout',
-            admin: 'http://keycloak.k8s.com:31080/admin'
+            logout: this.keycloakLogoutUrl,
+            admin: this.keycloakAdminUrl
         }));
     }
 

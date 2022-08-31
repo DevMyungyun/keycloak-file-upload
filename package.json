@@ -5,7 +5,7 @@
   "main": "dist/src/app.js",
   "scripts": {
     "build": "tsc",
-    "start": "cross-env NODE_ENV=dev nodemon dist/src/app.js",
+    "start": "nodemon dist/src/app.js",
     "watch": "tsc-watch --onSuccess dist/src/app.js",
     "dev": "tsc && cross-env NODE_ENV=dev nodemon dist/src/app.js"
   },
@@ -17,6 +17,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
     "express": "^4.17.1",
     "express-session": "^1.17.3",
     "formidable": "^2.0.1",
