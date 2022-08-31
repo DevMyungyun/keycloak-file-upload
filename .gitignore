@@ -5,6 +5,9 @@ node_modules
 # Build File
 dist
 
+# Keycloak file
+keycloak.json
+
 # ETC FILE
 .gitignore
 *lock.json
